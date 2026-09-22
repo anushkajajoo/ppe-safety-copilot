@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-09-22T09:08:38.515854+00:00",
+  "python": "3.11.9",
+  "os": "Windows 10 (AMD64)",
+  "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+  "torch": "2.11.0+cu128",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce RTX 3050 A Laptop GPU",
+  "gpu_vram_gb": 4.0,
+  "cuda_runtime": "12.8",
+  "compute_capability": "8.9",
+  "fp16_ok": true,
+  "nvidia_smi": "NVIDIA GeForce RTX 3050 A Laptop GPU, 592.82, 4094 MiB",
+  "ultralytics": "8.4.158",
+  "opencv": "5.0.0",
+  "webcam": "index 0: 640x480",
+  "fastapi": "0.141.1",
+  "sqlalchemy": "2.0.54",
+  "pydantic": "2.13.5",
+  "psutil": "7.2.2",
+  "problems": []
+}

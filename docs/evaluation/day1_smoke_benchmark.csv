@@ -1,0 +1,2 @@
+weights,device,imgsz,frames_measured,inference_ms_mean,inference_ms_p95,loop_ms_mean,fps_mean
+yolo26n.pt,0,640,347,21.26,26.41,63.95,15.64
