@@ -1,0 +1,55 @@
+{
+  "created": "2026-09-24T08:57:38+00:00",
+  "settings": {
+    "images": 40,
+    "conf": 0.35,
+    "imgsz": 640,
+    "weights": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\models\\ppe4_yolo26n_best.pt",
+    "device": "0",
+    "keep_ppe_boxes": true
+  },
+  "face_regions_masked": 84,
+  "mean_masked_area_pct_of_frame": 13.072,
+  "per_class": {
+    "person": {
+      "detections_before": 84,
+      "detections_after": 90,
+      "preserved": 44,
+      "lost": 40,
+      "spurious": 46,
+      "preserved_pct": 52.4,
+      "mean_conf_before": 0.672,
+      "mean_conf_after": 0.652
+    },
+    "helmet": {
+      "detections_before": 45,
+      "detections_after": 44,
+      "preserved": 42,
+      "lost": 3,
+      "spurious": 2,
+      "preserved_pct": 93.3,
+      "mean_conf_before": 0.818,
+      "mean_conf_after": 0.809
+    },
+    "vest": {
+      "detections_before": 17,
+      "detections_after": 22,
+      "preserved": 16,
+      "lost": 1,
+      "spurious": 6,
+      "preserved_pct": 94.1,
+      "mean_conf_before": 0.691,
+      "mean_conf_after": 0.609
+    },
+    "mask": {
+      "detections_before": 7,
+      "detections_after": 7,
+      "preserved": 6,
+      "lost": 1,
+      "spurious": 1,
+      "preserved_pct": 85.7,
+      "mean_conf_before": 0.796,
+      "mean_conf_after": 0.773
+    }
+  }
+}

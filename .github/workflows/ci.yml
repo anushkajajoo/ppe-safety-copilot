@@ -1,0 +1,100 @@
+# Continuous integration: every push and pull request runs the same checks a reviewer would.
+#
+# Design notes (these are deliberate, not defaults):
+#   * No GPU, no camera, no model file on the runner. The suite is built so that none of
+#     the 233 tests need them - that is what makes CI possible at all.
+#   * The dependency scan runs on every build, not monthly, because a vulnerable pinned
+#     package is a finding whether or not anyone remembered to look.
+#   * The Docker build runs in CI too, so "it runs on a clean machine" is verified by a
+#     machine rather than asserted in the README.
+name: CI
+
+on:
+  push:
+    branches: [main, master, "feature/**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run the test suite
+        run: python -m pytest -q
+
+  lint:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install tools
+        run: pip install ruff
+
+      - name: Syntax and unused-import check
+        # E9/F63/F7/F82 are real errors (syntax, undefined names), F401 is dead imports.
+        run: ruff check --select E9,F63,F7,F82,F401 .
+
+  security:
+    name: Dependency scan and secret check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the scanner
+        run: pip install pip-audit
+
+      - name: Audit pinned dependencies for known vulnerabilities
+        # Reported, not silently ignored: a finding fails the build and has to be decided on.
+        run: pip-audit -r requirements.txt --strict
+
+      - name: Refuse to build if a .env file was committed
+        run: |
+          if [ -f .env ]; then
+            echo "::error::.env is committed. Secrets must never enter the repository."
+            exit 1
+          fi
+
+  container:
+    name: Container image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the image
+        run: docker build -t ppe-safety-copilot:ci .
+      - name: The image starts and answers /health
+        run: |
+          docker run -d --name ppe -p 8000:8000 ppe-safety-copilot:ci
+          for i in $(seq 1 30); do
+            if curl -fs http://127.0.0.1:8000/health > /dev/null; then
+              echo "healthy after ${i}s"; docker rm -f ppe; exit 0
+            fi
+            sleep 1
+          done
+          echo "::error::the container never became healthy"; docker logs ppe; exit 1

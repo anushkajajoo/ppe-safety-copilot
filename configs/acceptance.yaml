@@ -1,0 +1,97 @@
+# Go / no-go acceptance criteria.
+#
+# Each line is a claim the project makes, the measurement that supports it, and the value
+# below which the claim stops being true. They were written from what the system is FOR,
+# not back-fitted to the numbers it happens to produce - which is why two of them sit
+# uncomfortably close to the measured value, and one (vest recall) is a known failure that
+# is recorded rather than hidden.
+#
+# Check them with:  python -m scripts.check_acceptance
+criteria:
+  - id: detector-map
+    what: Detector is useful on unseen data
+    why: Below this the system would miss too much to be worth a supervisor's attention.
+    report: detector_test_metrics.json
+    path: [overall, mAP50]
+    operator: ">="
+    threshold: 0.70
+
+  - id: detector-recall
+    what: Detector finds most of the PPE that is there
+    why: Recall is the dangerous direction - a missed violation is an unprotected worker.
+    report: detector_test_metrics.json
+    path: [overall, recall]
+    operator: ">="
+    threshold: 0.60
+
+  - id: helmet-recall
+    what: Helmets specifically are found
+    why: The helmet is the item most often checked and the easiest to see.
+    report: detector_test_metrics.json
+    path: [per_class, helmet, recall]
+    operator: ">="
+    threshold: 0.70
+
+  - id: false-alarms
+    what: The temporal filter removes the single-frame false alarms
+    why: A supervisor shown false alarms stops reading alerts at all.
+    report: temporal_comparison.json
+    path: [scenario_a_detector_blinks, counts, proposed, POTENTIAL_VIOLATION]
+    operator: "=="
+    threshold: 0
+
+  - id: privacy-helmet-evidence
+    what: Masking a face leaves the evidence readable
+    why: A snapshot that hides the violation is worse than no snapshot.
+    report: privacy_utility.json
+    path: [per_class, helmet, preserved_pct]
+    operator: ">="
+    threshold: 85.0
+
+  - id: privacy-regions-masked
+    what: Faces really are masked when a snapshot is stored
+    why: The whole privacy claim rests on this number being greater than zero.
+    report: privacy_utility.json
+    path: [face_regions_masked]
+    operator: ">"
+    threshold: 0
+
+  - id: latency-p95
+    what: No frame stalls noticeably
+    why: An average hides the frame a person actually notices; p95 does not.
+    report: resources.json
+    path: [latency, p95_ms]
+    operator: "<="
+    threshold: 200.0
+
+  - id: throughput
+    what: Sustained frame rate is usable for live monitoring
+    why: Below ~8 FPS the overlay reads as laggy and people stop trusting it.
+    report: resources.json
+    path: [latency, fps_sustained]
+    operator: ">="
+    threshold: 8.0
+
+  - id: memory
+    what: Memory stays inside a laptop's budget
+    why: The device also runs the browser and the dashboard.
+    report: resources.json
+    path: [memory_mb, peak_mb]
+    operator: "<="
+    threshold: 2500.0
+
+  - id: lighting-control
+    what: The lighting measurement is sound
+    why: The untouched control condition must score 100 %, or the experiment is broken.
+    report: robustness_lighting.json
+    path: [preserved_pct, "as measured", person]
+    operator: "=="
+    threshold: 100.0
+
+  - id: lighting-dusk
+    what: People are still found in dim light
+    why: Dusk and shaded bays are normal on a site, not an edge case.
+    report: robustness_lighting.json
+    path: [preserved_pct, "slightly dark (gamma 1.6)", person]
+    operator: ">="
+    threshold: 60.0

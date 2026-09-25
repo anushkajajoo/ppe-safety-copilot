@@ -1,0 +1,38 @@
+{
+  "weights": "/content/drive/MyDrive/ppe_project/runs/ppe4_yolo26n/weights/best.pt",
+  "split": "test",
+  "imgsz": 640,
+  "evaluated_at": "2026-09-23T19:04:19.396622+00:00",
+  "overall": {
+    "mAP50": 0.8036,
+    "mAP50_95": 0.4468,
+    "precision": 0.896,
+    "recall": 0.7076
+  },
+  "per_class": {
+    "person": {
+      "precision": 0.8119,
+      "recall": 0.7029,
+      "mAP50": 0.7709,
+      "mAP50_95": 0.418
+    },
+    "helmet": {
+      "precision": 0.955,
+      "recall": 0.7647,
+      "mAP50": 0.8738,
+      "mAP50_95": 0.5226
+    },
+    "vest": {
+      "precision": 0.817,
+      "recall": 0.6833,
+      "mAP50": 0.7819,
+      "mAP50_95": 0.4162
+    },
+    "mask": {
+      "precision": 1.0,
+      "recall": 0.6794,
+      "mAP50": 0.7879,
+      "mAP50_95": 0.4303
+    }
+  }
+}

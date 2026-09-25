@@ -7,6 +7,11 @@ on COCO; we only adapt it to person/helmet/vest/mask (transfer learning).
 Settings are conservative for a 4 GB laptop GPU. If you get "CUDA out of memory":
     1st: --batch 4      2nd: --imgsz 512      3rd: train on Colab (README)
 
+IMPORTANT - mosaic is OFF by default (--mosaic 0.0).
+Our training images are ALREADY Roboflow mosaics (four photos tiled into one), so
+letting Ultralytics build mosaics on top of them would give mosaics-of-mosaics and
+shrink every object to a few pixels. See docs/decisions.md D-010a.
+
 Run:
     python -m training.train                                   # defaults
     python -m training.train --epochs 3 --fraction 0.1 --name smoke   # 5-minute sanity run
@@ -27,20 +32,29 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
 
 
-def main() -> int:
+def build_parser() -> argparse.ArgumentParser:
+    """All training options in one place (separate function so tests can check them)."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=str(ROOT / "datasets" / "ppe4" / "data.yaml"))
     ap.add_argument("--model", default="yolo26n.pt", help="pretrained checkpoint (yolo11n.pt also works)")
-    ap.add_argument("--epochs", type=int, default=60)
+    ap.add_argument("--epochs", type=int, default=30)
     ap.add_argument("--imgsz", type=int, default=640)
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--workers", type=int, default=2, help="keep low on Windows")
     ap.add_argument("--device", default="0", help="'0' = first GPU, 'cpu' = CPU")
-    ap.add_argument("--patience", type=int, default=15, help="early stop if val mAP doesn't improve")
+    ap.add_argument("--patience", type=int, default=8, help="early stop if val mAP doesn't improve")
     ap.add_argument("--fraction", type=float, default=1.0, help="use part of train set (quick tests)")
     ap.add_argument("--name", default="ppe4_yolo26n")
+    ap.add_argument("--project", default=str(ROOT / "runs" / "train"),
+                    help="where run folders go; on Colab point this at Google Drive so it survives disconnects")
+    ap.add_argument("--mosaic", type=float, default=0.0,
+                    help="Ultralytics mosaic augmentation; 0 because our images are already mosaics")
     ap.add_argument("--resume", action="store_true")
-    args = ap.parse_args()
+    return ap
+
+
+def main() -> int:
+    args = build_parser().parse_args()
 
     import torch
     import ultralytics
@@ -48,10 +62,12 @@ def main() -> int:
 
     data = Path(args.data)
     if not data.exists():
-        print(f"data.yaml not found: {data}\nRun training/prepare_sh17.py first.")
+        print(f"\nERROR: Dataset not found at {data}")
+        print("HINT : build it first with  python -m training.prepare_ppe4 --src <export>,")
+        print("       or unzip datasets\\_incoming\\*.zip into datasets\\ (see README).")
         return 1
 
-    project = ROOT / "runs" / "train"
+    project = Path(args.project)
     last_ckpt = project / args.name / "weights" / "last.pt"
 
     try:
@@ -68,8 +84,9 @@ def main() -> int:
                 workers=args.workers, device=args.device, patience=args.patience,
                 fraction=args.fraction, project=str(project), name=args.name, exist_ok=True,
                 seed=42, deterministic=True, amp=True, cache=False, plots=True,
-                # Augmentations: flips are fine for PPE; keep defaults otherwise.
-                fliplr=0.5,
+                # Augmentations: horizontal flips are fine for PPE (a helmet is a helmet
+                # either way). Mosaic is off - our images are already mosaics.
+                fliplr=0.5, mosaic=args.mosaic, close_mosaic=0,
             )
     except torch.cuda.OutOfMemoryError:
         print("\nCUDA OUT OF MEMORY. Retry with --batch 4, then --imgsz 512, or use Colab.")
@@ -84,6 +101,8 @@ def main() -> int:
     models_dir.mkdir(exist_ok=True)
     dst = models_dir / f"{args.name}_best.pt"
     shutil.copy2(best, dst)
+    if last_ckpt.exists():                       # keep the final epoch too
+        shutil.copy2(last_ckpt, models_dir / f"{args.name}_last.pt")
 
     info = {
         "model_file": dst.name,

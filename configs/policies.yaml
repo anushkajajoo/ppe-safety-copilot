@@ -1,0 +1,24 @@
+# Zone policies + decision thresholds. Change behaviour here, not in code.
+rules_version: "1.0"
+
+zone_types:
+  GENERAL:    {required_ppe: [helmet, vest], authorization_required: false}
+  CAUTION:    {required_ppe: [helmet, vest, mask], authorization_required: false}
+  RESTRICTED: {required_ppe: [helmet, vest], authorization_required: true}
+# A zone in zones.yaml may override required_ppe for itself.
+
+temporal:
+  window_frames: 15      # decide on the last 15 frames of each worker (about 0.6 s at 25 FPS)
+  violate_at: 10         # item missing in >= 10 of 15 frames  -> POTENTIAL_VIOLATION
+  uncertain_at: 5        # item missing in 5..9 of 15 frames   -> UNCERTAIN
+                         # item missing in 0..4 of 15 frames   -> treated as worn
+
+detection:
+  person_conf: 0.40      # ignore person boxes below this confidence
+  ppe_conf: 0.30         # ignore PPE boxes below this confidence
+  assoc_min_ioa: 0.50    # PPE box must lie >= 50 % inside the person's head/torso region
+
+events:
+  cooldown_seconds: 30   # same worker + same reasons -> at most one event per 30 s
+  emit_uncertain: true   # also create events for UNCERTAIN (review optional)
+  forget_worker_after_s: 3.0   # a track unseen this long is dropped

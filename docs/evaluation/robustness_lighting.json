@@ -1,0 +1,209 @@
+{
+  "created": "2026-09-24T16:21:13+00:00",
+  "settings": {
+    "images": 30,
+    "conf": 0.35,
+    "imgsz": 640,
+    "device": "0"
+  },
+  "preserved_pct": {
+    "bright (gamma 0.4)": {
+      "person": 88.1,
+      "helmet": 96.8,
+      "vest": 66.7,
+      "mask": null
+    },
+    "slightly bright (gamma 0.6)": {
+      "person": 94.9,
+      "helmet": 96.8,
+      "vest": 66.7,
+      "mask": null
+    },
+    "as measured": {
+      "person": 100.0,
+      "helmet": 100.0,
+      "vest": 100.0,
+      "mask": null
+    },
+    "slightly dark (gamma 1.6)": {
+      "person": 94.9,
+      "helmet": 96.8,
+      "vest": 33.3,
+      "mask": null
+    },
+    "dark (gamma 2.2)": {
+      "person": 91.5,
+      "helmet": 96.8,
+      "vest": 33.3,
+      "mask": null
+    },
+    "flat light (contrast 0.5)": {
+      "person": 89.8,
+      "helmet": 96.8,
+      "vest": 66.7,
+      "mask": null
+    },
+    "sensor noise (sigma 15)": {
+      "person": 39.0,
+      "helmet": 45.2,
+      "vest": 0.0,
+      "mask": null
+    }
+  },
+  "raw": {
+    "person": {
+      "bright (gamma 0.4)": {
+        "baseline": 59,
+        "preserved": 52,
+        "spurious": 3
+      },
+      "slightly bright (gamma 0.6)": {
+        "baseline": 59,
+        "preserved": 56,
+        "spurious": 1
+      },
+      "as measured": {
+        "baseline": 59,
+        "preserved": 59,
+        "spurious": 0
+      },
+      "slightly dark (gamma 1.6)": {
+        "baseline": 59,
+        "preserved": 56,
+        "spurious": 10
+      },
+      "dark (gamma 2.2)": {
+        "baseline": 59,
+        "preserved": 54,
+        "spurious": 9
+      },
+      "flat light (contrast 0.5)": {
+        "baseline": 59,
+        "preserved": 53,
+        "spurious": 6
+      },
+      "sensor noise (sigma 15)": {
+        "baseline": 59,
+        "preserved": 23,
+        "spurious": 2
+      }
+    },
+    "helmet": {
+      "bright (gamma 0.4)": {
+        "baseline": 31,
+        "preserved": 30,
+        "spurious": 0
+      },
+      "slightly bright (gamma 0.6)": {
+        "baseline": 31,
+        "preserved": 30,
+        "spurious": 1
+      },
+      "as measured": {
+        "baseline": 31,
+        "preserved": 31,
+        "spurious": 0
+      },
+      "slightly dark (gamma 1.6)": {
+        "baseline": 31,
+        "preserved": 30,
+        "spurious": 0
+      },
+      "dark (gamma 2.2)": {
+        "baseline": 31,
+        "preserved": 30,
+        "spurious": 1
+      },
+      "flat light (contrast 0.5)": {
+        "baseline": 31,
+        "preserved": 30,
+        "spurious": 0
+      },
+      "sensor noise (sigma 15)": {
+        "baseline": 31,
+        "preserved": 14,
+        "spurious": 0
+      }
+    },
+    "vest": {
+      "bright (gamma 0.4)": {
+        "baseline": 3,
+        "preserved": 2,
+        "spurious": 0
+      },
+      "slightly bright (gamma 0.6)": {
+        "baseline": 3,
+        "preserved": 2,
+        "spurious": 0
+      },
+      "as measured": {
+        "baseline": 3,
+        "preserved": 3,
+        "spurious": 0
+      },
+      "slightly dark (gamma 1.6)": {
+        "baseline": 3,
+        "preserved": 1,
+        "spurious": 0
+      },
+      "dark (gamma 2.2)": {
+        "baseline": 3,
+        "preserved": 1,
+        "spurious": 0
+      },
+      "flat light (contrast 0.5)": {
+        "baseline": 3,
+        "preserved": 2,
+        "spurious": 0
+      },
+      "sensor noise (sigma 15)": {
+        "baseline": 3,
+        "preserved": 0,
+        "spurious": 0
+      }
+    },
+    "mask": {
+      "bright (gamma 0.4)": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      },
+      "slightly bright (gamma 0.6)": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      },
+      "as measured": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      },
+      "slightly dark (gamma 1.6)": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      },
+      "dark (gamma 2.2)": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      },
+      "flat light (contrast 0.5)": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      },
+      "sensor noise (sigma 15)": {
+        "baseline": 0,
+        "preserved": 0,
+        "spurious": 0
+      }
+    }
+  },
+  "control_detections": {
+    "person": 59,
+    "helmet": 31,
+    "vest": 3,
+    "mask": 0
+  }
+}

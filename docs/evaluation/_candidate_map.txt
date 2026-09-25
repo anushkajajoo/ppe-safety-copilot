@@ -1,0 +1,5 @@
+Provenance of the demo images in samples/ - see samples/README.txt for the full list.
+samples/compliant_candidate.jpg <- datasets/ppe4/val/images/ppe_1228_jpg.rf.29b714c415ea74df3160f56a603463a0.jpg
+samples/helmet_only.jpg <- datasets/ppe4/val/images/-3154-_png_jpg.rf.f118da2b1c20afb78ff93dc7d558f42c.jpg
+samples/vest_only.jpg <- datasets/ppe4/val/images/youtube-470_jpg.rf.6aebf4cfb6c5a7e703c6532ca5090517.jpg
+samples/person_only.jpg <- datasets/ppe4/val/images/residential_jpg.rf.17181770c64333009b9101e1572c5112.jpg

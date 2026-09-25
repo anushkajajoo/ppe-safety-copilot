@@ -1,0 +1,64 @@
+{
+  "created": "2026-09-24T07:30:32+00:00",
+  "settings": {
+    "frames": 200,
+    "miss_rate": 0.15,
+    "window": 15,
+    "seed": 42
+  },
+  "scenario_a_detector_blinks": {
+    "scenario": "Scenario A - detector blinks (worker IS compliant)",
+    "truth": [
+      "helmet",
+      "vest"
+    ],
+    "miss_item": "helmet",
+    "miss_rate": 0.15,
+    "frames": 200,
+    "window": 15,
+    "counts": {
+      "baseline": {
+        "POTENTIAL_VIOLATION": 30,
+        "UNCERTAIN": 0,
+        "COMPLIANT": 170
+      },
+      "proposed": {
+        "POTENTIAL_VIOLATION": 0,
+        "UNCERTAIN": 22,
+        "COMPLIANT": 178
+      }
+    },
+    "first_violation_frame": {
+      "baseline": 2,
+      "proposed": null
+    }
+  },
+  "scenario_b_real_violation": {
+    "scenario": "Scenario B - real violation (no vest at all)",
+    "truth": [
+      "helmet"
+    ],
+    "miss_item": "none",
+    "miss_rate": 0.0,
+    "frames": 200,
+    "window": 15,
+    "counts": {
+      "baseline": {
+        "POTENTIAL_VIOLATION": 200,
+        "UNCERTAIN": 0,
+        "COMPLIANT": 0
+      },
+      "proposed": {
+        "POTENTIAL_VIOLATION": 186,
+        "UNCERTAIN": 14,
+        "COMPLIANT": 0
+      }
+    },
+    "first_violation_frame": {
+      "baseline": 1,
+      "proposed": 15
+    }
+  },
+  "false_alarms_avoided": 30,
+  "confirmation_delay_frames": 14
+}

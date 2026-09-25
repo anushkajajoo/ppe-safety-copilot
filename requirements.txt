@@ -3,7 +3,6 @@
 ultralytics>=8.4.0        # YOLO26 + ByteTrack tracker (AGPL-3.0)
 opencv-python>=4.9
 numpy>=1.26
-pandas>=2.1
 pillow>=10.0
 pyyaml>=6.0
 psutil>=5.9               # CPU / RAM measurement
@@ -12,14 +11,16 @@ nvidia-ml-py>=12.535      # GPU utilisation / memory measurement (NVML)
 # Backend
 fastapi>=0.115
 uvicorn[standard]>=0.30
+python-multipart>=0.0.9    # REQUIRED for the image upload in POST /predict
 pydantic>=2.7
 pydantic-settings>=2.3
 sqlalchemy>=2.0.30
 httpx>=0.27               # edge -> API client, and FastAPI TestClient
 
-# Dashboard (Day 4)
-streamlit>=1.36
-plotly>=5.22
+# NOTE: streamlit and plotly were removed after the dashboard was rebuilt as plain
+# HTML + JS (D-023). Nothing imports them, so they were two unused dependencies -
+# and an unused dependency is still an attack surface the scanner has to check.
+# pandas went the same way: the evaluation scripts use the standard library.
 
 # Testing
 pytest>=8.0

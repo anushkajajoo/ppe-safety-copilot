@@ -1,0 +1,90 @@
+{
+  "checked": "2026-09-23T14:40:09+00:00",
+  "dataset": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\datasets\\ppe4",
+  "class_names": [
+    "person",
+    "helmet",
+    "vest",
+    "mask"
+  ],
+  "splits": {
+    "train": {
+      "images": 1000,
+      "labels": 1000,
+      "boxes": 6714,
+      "empty_label_files": 0,
+      "boxes_per_class": {
+        "person": 3641,
+        "helmet": 1267,
+        "vest": 1175,
+        "mask": 631
+      },
+      "images_per_class": {
+        "person": 996,
+        "helmet": 524,
+        "vest": 513,
+        "mask": 414
+      },
+      "image_size": {
+        "max_width": 640,
+        "max_height": 640
+      }
+    },
+    "val": {
+      "images": 84,
+      "labels": 84,
+      "boxes": 364,
+      "empty_label_files": 0,
+      "boxes_per_class": {
+        "person": 188,
+        "helmet": 94,
+        "vest": 55,
+        "mask": 27
+      },
+      "images_per_class": {
+        "person": 84,
+        "helmet": 42,
+        "vest": 28,
+        "mask": 21
+      },
+      "image_size": {
+        "max_width": 640,
+        "max_height": 640
+      }
+    },
+    "test": {
+      "images": 59,
+      "labels": 59,
+      "boxes": 375,
+      "empty_label_files": 0,
+      "boxes_per_class": {
+        "person": 175,
+        "helmet": 111,
+        "vest": 60,
+        "mask": 29
+      },
+      "images_per_class": {
+        "person": 58,
+        "helmet": 31,
+        "vest": 21,
+        "mask": 16
+      },
+      "image_size": {
+        "max_width": 640,
+        "max_height": 640
+      }
+    }
+  },
+  "problem_counts": {
+    "missing_folders": 0,
+    "missing_labels": 0,
+    "missing_images": 0,
+    "corrupt_images": 0,
+    "malformed_lines": 0,
+    "invalid_boxes": 0,
+    "invalid_class_ids": 0
+  },
+  "problems": {},
+  "warnings": [],
+  "ok": true
+}

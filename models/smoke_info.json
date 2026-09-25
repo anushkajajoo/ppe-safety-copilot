@@ -1,0 +1,27 @@
+{
+  "model_file": "smoke_best.pt",
+  "base_model": "yolo26n.pt",
+  "trained_at": "2026-09-23T14:44:07.782137+00:00",
+  "data_yaml": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\datasets\\ppe4\\data.yaml",
+  "data_yaml_sha256_16": "3b66ec5ba4d28d58",
+  "args": {
+    "data": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\datasets\\ppe4\\data.yaml",
+    "model": "yolo26n.pt",
+    "epochs": 3,
+    "imgsz": 640,
+    "batch": 8,
+    "workers": 2,
+    "device": "0",
+    "patience": 8,
+    "fraction": 0.1,
+    "name": "smoke",
+    "project": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\runs\\train",
+    "mosaic": 0.0,
+    "resume": false
+  },
+  "ultralytics": "8.4.158",
+  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 3050 A Laptop GPU",
+  "run_dir": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\runs\\train\\smoke",
+  "note": "Validation metrics are in run_dir/results.csv. Test metrics: run training/validate.py."
+}

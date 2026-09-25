@@ -1,0 +1,21 @@
+# Example accounts file. Copy to users.yaml and create real accounts with:
+#     python -m scripts.make_user --username ana --role supervisor
+#
+# Only hashes are ever stored. The salt and hash below are examples and will not
+# authenticate anything - generate your own.
+users:
+  - username: viewer
+    role: viewer            # can see the site, cannot decide anything
+    display_name: Site viewer
+    salt: 00112233445566778899aabbccddeeff
+    hash: "replace-me-by-running-scripts.make_user"
+  - username: ana
+    role: supervisor        # can approve or reject what the copilot proposes
+    display_name: Ana Silva
+    salt: ffeeddccbbaa99887766554433221100
+    hash: "replace-me-by-running-scripts.make_user"
+  - username: admin
+    role: admin             # configuration and maintenance as well
+    display_name: Site administrator
+    salt: 0f1e2d3c4b5a69788796a5b4c3d2e1f0
+    hash: "replace-me-by-running-scripts.make_user"

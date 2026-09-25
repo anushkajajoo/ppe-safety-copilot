@@ -1,0 +1,26 @@
+{
+  "created": "2026-09-24T16:20:42+00:00",
+  "device": "0",
+  "device_reason": "NVIDIA GeForce RTX 3050 A Laptop GPU, 3244 MB free of 4093 MB",
+  "imgsz": 640,
+  "image": "compliant_candidate.jpg",
+  "warmup_frames": 5,
+  "latency": {
+    "frames": 100,
+    "mean_ms": 15.66,
+    "p50_ms": 15.29,
+    "p90_ms": 18.27,
+    "p95_ms": 19.1,
+    "p99_ms": 22.7,
+    "max_ms": 23.64,
+    "fps_sustained": 63.9
+  },
+  "memory_mb": {
+    "baseline_mb": 37.2,
+    "after_model_load_mb": 617.5,
+    "model_footprint_mb": 580.3,
+    "peak_mb": 1228.9,
+    "end_mb": 1228.9
+  },
+  "wall_seconds": 1.57
+}

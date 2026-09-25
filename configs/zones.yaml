@@ -1,0 +1,29 @@
+# Safety zones for each camera, drawn in PIXEL coordinates of `frame_size`.
+# If the real camera resolution differs, the edge scales the polygons automatically.
+# Redraw them for YOUR room with:  python -m scripts.draw_zones
+#
+# When zones overlap, the zone with the HIGHEST priority wins
+# (so "general" can cover the whole frame and smaller zones sit on top of it).
+camera_id: CAM-01
+frame_size: [1280, 720]
+zones:
+  - zone_id: general-a
+    zone_name: General-A
+    zone_type: GENERAL
+    priority: 0
+    polygon: [[0, 0], [1279, 0], [1279, 719], [0, 719]]
+
+  - zone_id: welding-a
+    zone_name: Welding-A
+    zone_type: CAUTION
+    priority: 2
+    polygon: [[660, 150], [1100, 135], [1130, 570], [640, 575]]
+
+  - zone_id: restricted-c
+    zone_name: Restricted-C
+    zone_type: RESTRICTED
+    priority: 3
+    polygon: [[40, 590], [530, 590], [560, 715], [15, 715]]
+    # Optional: supervisor-approved access windows (local time, 24 h). Empty = never authorized.
+    authorization_windows: []
+    #   - {start: "15:00", end: "16:00", note: "maintenance, approved by admin_1"}

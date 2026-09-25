@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live monitoring — Edge Vision Safety Copilot</title>
+<link rel="stylesheet" href="/assets/theme.css">
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="rail">
+    <a class="rail-brand" href="/dashboard">
+      <span class="rail-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+      </span>
+      <span class="rail-name">PPE Safety<br>Copilot</span>
+    </a>
+
+    <nav class="rail-nav">
+      <a class="rail-link" href="/dashboard">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+          <rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>
+        <span>Dashboard</span>
+      </a>
+      <a class="rail-link" href="/dashboard#analyse">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"></rect>
+          <circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+        <span>Analyse</span>
+      </a>
+      <a class="rail-link active" href="/live">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="2"></rect>
+          <path d="M22 8l-6 4 6 4V8z"></path></svg>
+        <span>Live Monitoring</span>
+      </a>
+      <a class="rail-link" href="/dashboard#history">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path>
+          <path d="M3 12a9 9 0 0 1 9-9"></path><path d="M12 7v5l3 2"></path></svg>
+        <span>History</span>
+      </a>
+      <a class="rail-link" href="/dashboard#analytics">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><rect x="5" y="11" width="3.5" height="7"></rect>
+          <rect x="10.2" y="6" width="3.5" height="12"></rect><rect x="15.5" y="14" width="3.5" height="4"></rect></svg>
+        <span>Analytics</span>
+      </a>
+      <a class="rail-link" href="/dashboard#alerts">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6z"></path>
+          <path d="M10.5 21a2 2 0 0 0 3 0"></path></svg>
+        <span>Alerts</span>
+      </a>
+      <a class="rail-link" href="/dashboard#settings">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle>
+          <path d="M20 12a8 8 0 0 0-.2-1.8l2-1.5-2-3.4-2.3 1a8 8 0 0 0-3-1.8L14 2h-4l-.5 2.5a8 8 0 0 0-3 1.8l-2.3-1-2 3.4 2 1.5A8 8 0 0 0 4 12c0 .6.1 1.2.2 1.8l-2 1.5 2 3.4 2.3-1a8 8 0 0 0 3 1.8L10 22h4l.5-2.5a8 8 0 0 0 3-1.8l2.3 1 2-3.4-2-1.5c.1-.6.2-1.2.2-1.8z"></path></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="rail-foot">
+      <div class="rail-user">
+        <span class="rail-avatar" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle>
+            <path d="M4.5 20a7.5 7.5 0 0 1 15 0"></path></svg>
+        </span>
+        <span>
+          <span class="rail-user-name">Local console</span><br>
+          <span class="rail-user-role">127.0.0.1 only</span>
+        </span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div>
+        <h1>Live Monitoring</h1>
+        <p class="sub">Real-time detection and safety decisions</p>
+      </div>
+      <div class="topbar-right">
+        <span class="pill"><span class="dot" id="camDot"></span><span id="camState">Camera idle</span></span>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <div class="grid wide">
+        <div class="card">
+          <div class="card-head">
+            <div><h2>Live feed</h2>
+              <p class="hint" style="margin:0">Read, analysed and drawn by this computer. Frames are never saved.</p></div>
+            <span class="status-text" id="meta"></span>
+          </div>
+
+          <div class="feed-frame">
+            <img id="cam" alt="camera preview" src="">
+            <div class="placeholder" id="camPlaceholder">
+              Press Start to open the camera.<br>
+              The first frame takes a few seconds while the system warms up.
+            </div>
+          </div>
+
+          <div class="feed-strip">
+            <span><b id="sPeople">—</b> people</span>
+            <span><b id="sViolations">—</b> violations</span>
+            <span><b id="sFrames">—</b> frames</span>
+            <span style="margin-left:auto"><b id="sFps">—</b> fps</span>
+          </div>
+
+          <div class="fields" id="requiredPpe" style="margin-top:16px">
+            <label class="field">Camera <input type="number" id="camera" value="0" min="0" max="5"></label>
+            <label class="field">FPS cap <input type="number" id="fps" value="10" min="1" max="30"></label>
+            <hr>
+            <span class="field">Required PPE</span>
+            <label class="check"><input type="checkbox" value="helmet" checked> helmet</label>
+            <label class="check"><input type="checkbox" value="vest" checked> vest</label>
+            <label class="check"><input type="checkbox" value="mask"> mask</label>
+          </div>
+
+          <div class="btn-row">
+            <button id="start">Start camera</button>
+            <button id="stop" class="ghost" disabled>Stop</button>
+            <span class="status-text" id="status"></span>
+          </div>
+          <p class="note">Only one program can use the camera at a time. If it does not open, close
+             whatever else is using it and press Start again.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Latest decision</h2></div>
+
+          <div id="verdict" class="verdict"><div class="verdict-mark" id="verdictMark">—</div>
+            <div class="verdict-body">
+              <h3 id="verdictTitle">Camera not started</h3>
+              <p id="verdictReason">Press Start to begin monitoring.</p>
+            </div>
+          </div>
+
+          <div class="stats" style="margin-top:14px" id="stats"></div>
+
+          <div class="table-wrap" style="margin-top:16px"><table>
+            <thead><tr><th>Person</th><th>Status</th></tr></thead>
+            <tbody id="people">
+              <tr><td colspan="2"><div class="empty"><p>Camera not started.</p></div></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="banner" style="margin-top:16px">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path></svg>
+        <span>Each frame is judged on its own here. Confirmation across repeated frames — what
+              suppresses false alarms — runs in the continuous monitoring pipeline.</span>
+        <a class="spacer" href="/dashboard#history"><button class="ghost small">View history</button></a>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <span><strong>Processing</strong> · on this machine only</span>
+        <span><strong>Frames</strong> · held in memory, never saved</span>
+        <span><strong>Identity</strong> · no face recognition; labels reset each session</span>
+        <span><strong>Camera</strong> · released as soon as you press Stop</span>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let poller = null;
+
+function requiredList() {
+  return [...document.querySelectorAll('#requiredPpe input[type=checkbox]')]
+    .filter(c => c.checked).map(c => c.value).join(',') || 'helmet,vest';
+}
+/* Same rule as the dashboard: codes are logged, English is displayed. */
+const STATUS_WORDS = {
+  COMPLIANT: 'Compliant', MISSING_HELMET: 'No helmet', MISSING_VEST: 'No vest',
+  MISSING_MASK: 'No mask', MISSING_HELMET_AND_VEST: 'No helmet or vest',
+  POTENTIAL_VIOLATION: 'Possible violation', UNCERTAIN: 'Unclear - needs a look',
+};
+function badge(status) {
+  const kind = status === 'COMPLIANT' ? 'ok' : (status === 'UNCERTAIN' ? 'warn' : 'bad');
+  const word = STATUS_WORDS[status] || status;
+  return `<span class="badge ${kind}">${word}</span>`;
+}
+
+$('start').addEventListener('click', () => {
+  const params = new URLSearchParams({
+    camera: $('camera').value, fps: $('fps').value, required: requiredList(), t: Date.now()
+  });
+  $('cam').src = '/live/stream?' + params.toString();
+  $('camPlaceholder').classList.add('hidden');
+  $('start').disabled = true; $('stop').disabled = false;
+  $('camDot').className = 'dot live';
+  $('camState').textContent = 'Camera running';
+  $('status').textContent = 'starting… the first frame takes a few seconds';
+  poller = setInterval(refresh, 1000);
+});
+
+$('stop').addEventListener('click', () => {
+  $('cam').src = '';                       // closing the connection releases the camera
+  $('camPlaceholder').classList.remove('hidden');
+  clearInterval(poller); poller = null;
+  $('start').disabled = false; $('stop').disabled = true;
+  $('camDot').className = 'dot';
+  $('camState').textContent = 'Camera idle';
+  $('status').textContent = 'stopped';
+  $('stats').innerHTML = '';
+  $('meta').textContent = '';
+  $('people').innerHTML = '<tr><td colspan="2"><div class="empty"><p>Camera stopped.</p></div></td></tr>';
+});
+
+$('cam').addEventListener('error', () => {
+  if (!$('cam').getAttribute('src')) return;        // clearing the src is not a failure
+  $('status').textContent = 'Could not open the camera — is another program using it?';
+  $('camPlaceholder').classList.remove('hidden');
+  $('camDot').className = 'dot down';
+  $('camState').textContent = 'Camera unavailable';
+  $('start').disabled = false; $('stop').disabled = true;
+  clearInterval(poller); poller = null;
+});
+
+async function refresh() {
+  try {
+    const r = await (await fetch('/live/status')).json();
+    if (r.frames) $('status').textContent = '';
+
+    const decision = (r.decision || 'GO').toUpperCase();
+    $('verdict').className = 'verdict ' + decision.toLowerCase();
+    $('verdictMark').textContent = decision;
+    $('verdictTitle').textContent = {
+      GO: 'Safe to proceed', REVIEW: 'Needs a human look', STOP: 'Stop - intervene'
+    }[decision] || decision;
+    $('verdictReason').textContent = r.reason || '';
+    // the verdict describes the last frame; whether the camera is still running is separate
+    if (r.notice && !r.running) $('status').textContent = r.notice;
+
+    $('sPeople').textContent = r.people ?? '—';
+    $('sViolations').textContent = r.violations ?? '—';
+    $('sFrames').textContent = r.frames ?? '—';
+    $('sFps').textContent = r.fps ?? '—';
+
+    $('stats').innerHTML = [
+      ['People', r.people, ''],
+      ['Violations', r.violations, r.violations ? 'bad' : 'good'],
+      ['Frames', r.frames, ''], ['FPS', r.fps, ''],
+    ].map(([k, v, cls]) => `<div class="stat ${cls}"><div class="n">${v}</div><div class="k">${k}</div></div>`).join('');
+    $('meta').textContent = `required: ${(r.required || []).join(' + ') || '—'}`;
+    $('people').innerHTML = (r.statuses || []).length
+      ? r.statuses.map((s, i) => `<tr><td><strong>Person-${i + 1}</strong></td><td>${badge(s)}</td></tr>`).join('')
+      : '<tr><td colspan="2"><div class="empty"><p>No person in view.</p></div></td></tr>';
+  } catch (err) { /* the stream may still be starting */ }
+}
+</script>
+</body>
+</html>

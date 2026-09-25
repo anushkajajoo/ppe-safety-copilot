@@ -32,3 +32,23 @@ evidence/
 Thumbs.db
 .vscode/
 .idea/
+
+# Colab transfer bundle (large)
+colab_bundle.zip
+
+# Copilot outbox (local alert queue, not committed)
+data/outbox.jsonl
+
+# Sign-in accounts (password hashes) - per machine, never source
+configs/users.yaml
+
+# Generated operational data - recordings, snapshots, logs, reports.
+# data/ is already ignored above; these are named explicitly so nobody is tempted
+# to commit a clip of a worker by adding an exception.
+data/recordings/
+data/snapshots/
+data/logs/
+data/reports/
+data/evidence/
+*.mp4
+!samples/demo_clip.mp4

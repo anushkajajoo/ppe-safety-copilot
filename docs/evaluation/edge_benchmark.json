@@ -1,0 +1,45 @@
+{
+  "created": "2026-09-24T07:34:38+00:00",
+  "machine": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "device": "NVIDIA GeForce RTX 3050 A Laptop GPU"
+  },
+  "settings": {
+    "source": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\samples\\demo_clip.mp4",
+    "weights": "C:\\Users\\Anushka\\OneDrive\\Documents\\Desktop\\ppe-safety-copilot\\models\\ppe4_yolo26n_best.pt",
+    "imgsz": 640,
+    "conf": 0.35,
+    "frames_measured": 40,
+    "warmup_discarded": 10
+  },
+  "latency_ms": {
+    "detect_ms": {
+      "mean": 47.07,
+      "p95": 50.43,
+      "min": 43.0,
+      "max": 64.19
+    },
+    "rules_ms": {
+      "mean": 0.03,
+      "p95": 0.04,
+      "min": 0.03,
+      "max": 0.04
+    },
+    "draw_ms": {
+      "mean": 0.78,
+      "p95": 0.88,
+      "min": 0.68,
+      "max": 0.94
+    },
+    "total_ms": {
+      "mean": 47.88,
+      "p95": 51.29,
+      "min": 43.98,
+      "max": 65.11
+    }
+  },
+  "fps_mean": 20.9,
+  "fps_p95": 19.5,
+  "people_per_frame_mean": 1.0
+}

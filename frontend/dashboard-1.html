@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edge Vision Safety Copilot — PPE compliance</title>
+<link rel="stylesheet" href="/assets/theme.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ======================================================= navigation -->
+  <aside class="rail">
+    <a class="rail-brand" href="/dashboard">
+      <span class="rail-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+      </span>
+      <span class="rail-name">PPE Safety<br>Copilot</span>
+    </a>
+
+    <nav class="rail-nav" id="railNav">
+      <button class="rail-link active" data-view="dashboard" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+          <rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="rail-link" data-view="analyse" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"></rect>
+          <circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+        <span>Analyse</span>
+      </button>
+      <button class="rail-link" data-view="live" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="2"></rect>
+          <path d="M22 8l-6 4 6 4V8z"></path></svg>
+        <span>Live Monitoring</span>
+      </button>
+      <button class="rail-link" data-view="history" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path>
+          <path d="M3 12a9 9 0 0 1 9-9"></path><path d="M12 7v5l3 2"></path></svg>
+        <span>History</span>
+      </button>
+      <button class="rail-link" data-view="analytics" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><rect x="5" y="11" width="3.5" height="7"></rect>
+          <rect x="10.2" y="6" width="3.5" height="12"></rect><rect x="15.5" y="14" width="3.5" height="4"></rect></svg>
+        <span>Analytics</span>
+      </button>
+      <button class="rail-link" data-view="alerts" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6z"></path>
+          <path d="M10.5 21a2 2 0 0 0 3 0"></path></svg>
+        <span>Alerts</span>
+        <span class="count hidden" id="navAlertCount">0</span>
+      </button>
+      <button class="rail-link" data-view="settings" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.5 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7.5a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H7a1.6 1.6 0 0 0 1-1.5V1a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V7a1.6 1.6 0 0 0 1.5 1H23a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"></path></svg>
+        <span>Settings</span>
+      </button>
+    </nav>
+
+    <div class="rail-foot">
+      <div class="rail-user">
+        <span class="rail-avatar" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle>
+            <path d="M4.5 20a7.5 7.5 0 0 1 15 0"></path></svg>
+        </span>
+        <span>
+          <span class="rail-user-name" id="whoText">not signed in</span><br>
+          <span class="rail-user-role" id="whoRole">sign in to decide</span>
+        </span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================================================= main -->
+  <div class="main">
+
+    <header class="topbar">
+      <div>
+        <h1 id="pageTitle">Dashboard</h1>
+        <p class="sub" id="pageSub">Live PPE compliance monitoring for a safer site</p>
+      </div>
+      <div class="topbar-right">
+        <span class="pill" id="health"><span class="dot" id="healthDot"></span><span id="healthText">connecting…</span></span>
+        <span class="stamp" id="stamp"></span>
+        <button class="ghost small hidden" id="signOut">Sign out</button>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- ================================================== DASHBOARD -->
+      <section class="view" data-view="dashboard" id="viewDashboard">
+
+        <div class="grid kpis">
+          <div class="kpi">
+            <span class="kpi-icon bad" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path>
+                <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+            </span>
+            <div>
+              <div class="kpi-label">Active alerts</div>
+              <div class="kpi-value num" id="kpiAlerts">—</div>
+              <div class="kpi-foot" id="kpiAlertsFoot">waiting for the first check</div>
+            </div>
+          </div>
+
+          <div class="kpi">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"></circle>
+                <path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 5.2a3.2 3.2 0 0 1 0 6"></path>
+                <path d="M18 14.3a6.5 6.5 0 0 1 3.5 5.7"></path></svg>
+            </span>
+            <div>
+              <div class="kpi-label">People evaluated</div>
+              <div class="kpi-value num" id="kpiPeople">—</div>
+              <div class="kpi-foot" id="kpiPeopleFoot">across all recorded evaluations</div>
+            </div>
+          </div>
+
+          <div class="kpi">
+            <span class="kpi-icon ok" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="M9 12l2 2 4-4"></path></svg>
+            </span>
+            <div>
+              <div class="kpi-label">Compliant</div>
+              <div class="kpi-value num" id="kpiCompliant">—</div>
+              <div class="kpi-foot" id="kpiCompliantFoot">no evaluations yet</div>
+            </div>
+          </div>
+
+          <div class="kpi">
+            <span class="kpi-icon warn" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+            </span>
+            <div>
+              <div class="kpi-label">Needs attention</div>
+              <div class="kpi-value num" id="kpiAttention">—</div>
+              <div class="kpi-foot" id="kpiAttentionFoot">violations and unclear cases</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid wide" style="align-items:start">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2>Live camera feed</h2>
+                <p class="hint" style="margin:0">Frames are judged on this machine and never stored.</p>
+              </div>
+              <button class="ghost small" id="dashOpenLive">Open live view</button>
+            </div>
+            <div class="feed-frame" id="dashFrame">
+              <div class="placeholder" id="dashPlaceholder">
+                Checking the camera…
+              </div>
+            </div>
+            <div class="feed-strip">
+              <span><b id="dashPeople">—</b> people</span>
+              <span><b id="dashViolations">—</b> violations</span>
+              <span><b id="dashCompliant">—</b> compliant</span>
+              <span style="margin-left:auto" class="small" id="dashFrameNote">camera idle</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div><h2>Recent alerts</h2>
+                <p class="hint" style="margin:0" id="dashAlertNote">Raised from rule-engine decisions only.</p></div>
+              <button class="ghost small" id="dashAllAlerts">View all</button>
+            </div>
+            <div class="feed" id="dashAlerts">
+              <div class="empty"><p>Nothing to show yet.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">How this system decides</div>
+        <div class="card">
+          <div class="kv" id="principles">
+            <div><div class="k">Detection</div><div class="v">person · helmet · vest · mask</div></div>
+            <div><div class="k">Decision</div><div class="v">GO · REVIEW · STOP</div></div>
+            <div><div class="k">Made by</div><div class="v">Rules, not the model</div></div>
+            <div><div class="k">Action</div><div class="v">Human approval only</div></div>
+            <div><div class="k">Images stored</div><div class="v">None by default</div></div>
+            <div><div class="k">If it cannot see</div><div class="v">Never GO</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================== ANALYSE -->
+      <section class="view" data-view="analyse" id="viewAnalyse" hidden>
+
+        <div class="tabs" role="tablist">
+          <button class="tab" id="tabImage" role="tab" aria-selected="true">Image</button>
+          <button class="tab" id="tabVideo" role="tab" aria-selected="false">Video</button>
+        </div>
+
+        <!-- -------------------------------------------------- IMAGE -->
+        <div id="paneImage" class="grid split">
+          <div class="card">
+            <h2>Site photo</h2>
+            <p class="hint">JPG or PNG, up to 10 MB.</p>
+
+            <div class="drop" id="drop">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <path d="M7 10l5-5 5 5"></path><path d="M12 5v12"></path>
+              </svg>
+              <strong>Drop an image here</strong>
+              <span class="small">or click to choose a file</span>
+            </div>
+            <input type="file" id="file" accept="image/*" class="hidden">
+
+            <div class="fields" id="requiredPpe">
+              <span class="field">Required PPE</span>
+              <label class="check"><input type="checkbox" value="helmet" checked> helmet</label>
+              <label class="check"><input type="checkbox" value="vest" checked> vest</label>
+              <label class="check"><input type="checkbox" value="mask"> mask</label>
+              <hr>
+              <label class="field">Confidence
+                <input type="range" id="conf" min="0.1" max="0.9" step="0.05" value="0.35">
+                <strong id="confVal">0.35</strong>
+              </label>
+            </div>
+
+            <div class="btn-row">
+              <button id="run" disabled>Analyse image</button>
+              <span class="status-text" id="status"></span>
+            </div>
+            <p class="note">Each person is judged separately, and you can change what is required above — the site
+               policy applies straight away.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>Result</h2><span class="status-text" id="timing"></span></div>
+
+            <div id="resultsEmpty" class="empty">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="9" cy="9" r="2"></circle>
+                <path d="M21 15l-5-5L5 21"></path>
+              </svg>
+              <p>No image analysed yet.</p>
+            </div>
+
+            <div id="results" class="hidden">
+              <div id="verdict" class="verdict"><div class="verdict-mark" id="verdictMark">—</div>
+                <div class="verdict-body">
+                  <h3 id="verdictTitle">Decision</h3>
+                  <p id="verdictReason"></p>
+                  <div class="verdict-meta" id="verdictMeta"></div>
+                </div>
+              </div>
+              <div class="stats" id="stats" style="margin-top:16px"></div>
+              <div class="shot-wrap" style="margin-top:16px"><img id="shot" class="shot" alt="annotated result"></div>
+              <div class="table-wrap" style="margin-top:16px"><table>
+                <thead><tr><th>Person</th><th>Conf</th><th>Wearing</th><th>Missing</th><th>Status</th></tr></thead>
+                <tbody id="rows"></tbody>
+              </table></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- -------------------------------------------------- VIDEO -->
+        <div id="paneVideo" class="grid split hidden">
+          <div class="card">
+            <h2>Site clip</h2>
+            <p class="hint">MP4, AVI or MOV, up to 50 MB.</p>
+
+            <div class="drop" id="vdrop">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="14" height="14" rx="2"></rect><path d="M22 8l-6 4 6 4V8z"></path>
+              </svg>
+              <strong>Drop a video here</strong>
+              <span class="small">or click to choose a file</span>
+            </div>
+            <input type="file" id="vfile" accept="video/*" class="hidden">
+
+            <div class="fields">
+              <label class="field">Analyse every <input type="number" id="vevery" value="5" min="1" max="30"> th frame</label>
+              <label class="field">Max frames <input type="number" id="vmax" value="60" min="1" max="300"></label>
+            </div>
+
+            <div class="btn-row">
+              <button id="vrun" disabled>Analyse video</button>
+              <span class="status-text" id="vstatus"></span>
+            </div>
+            <p class="note">Sampling keeps the demo quick — a 30-second clip at 30 fps is 900 frames, and the
+               verdicts do not change. The upload is deleted from the temporary folder before the answer
+               is sent back.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>Result</h2><span class="status-text" id="vtiming"></span></div>
+
+            <div id="vresultsEmpty" class="empty">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="5" width="14" height="14" rx="2"></rect><path d="M22 8l-6 4 6 4V8z"></path>
+              </svg>
+              <p>No clip analysed yet. Try <strong>samples/demo_clip.mp4</strong>.</p>
+            </div>
+
+            <div id="vresults" class="hidden">
+              <div class="stats" id="vstats"></div>
+              <div class="shot-wrap" style="margin-top:16px"><img id="vshot" class="shot" alt="worst frame"></div>
+              <div class="table-wrap" style="margin-top:16px"><table>
+                <thead><tr><th>Frame</th><th>Time</th><th>People</th><th>Violations</th><th>Statuses</th></tr></thead>
+                <tbody id="vrows"></tbody>
+              </table></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================== HISTORY -->
+      <section class="view" data-view="history" id="viewHistory" hidden>
+        <div class="card">
+          <div class="card-head">
+            <div><h2>Event history</h2>
+              <p class="hint" style="margin:0" id="hsnote">Every meaningful event, kept as a record.</p></div>
+            <div style="display:flex;gap:8px">
+              <button class="ghost small" id="hsexport">Export CSV</button>
+              <button class="small" id="hsrefresh">Search</button>
+            </div>
+          </div>
+
+          <div class="filters">
+            <label class="field">Decision
+              <select id="fdecision"><option value="">any</option><option>STOP</option>
+                <option>REVIEW</option><option>GO</option></select></label>
+            <label class="field">Type
+              <select id="ftype"><option value="">any</option><option>PPE_VIOLATION</option>
+                <option>PPE_REVIEW</option><option>PPE_COMPLIANT</option></select></label>
+            <label class="field">Severity
+              <select id="fseverity"><option value="">any</option><option>CRITICAL</option>
+                <option>HIGH</option><option>MEDIUM</option><option>LOW</option></select></label>
+            <label class="field">Status
+              <select id="fstatus"><option value="">any</option><option>NEW</option>
+                <option>ACKNOWLEDGED</option><option>CLOSED</option></select></label>
+            <label class="field">Period
+              <select id="fhours"><option value="">all time</option><option value="1">last hour</option>
+                <option value="24">last 24 hours</option><option value="168">last 7 days</option></select></label>
+            <label class="field">Camera <input id="fcamera" placeholder="any" style="width:120px"></label>
+            <label class="check"><input type="checkbox" id="funack"> unacknowledged only</label>
+          </div>
+
+          <div class="table-wrap"><table>
+            <thead><tr><th>Time (UTC)</th><th>Event</th><th>Camera</th><th>Person</th>
+                       <th>Decision</th><th>Reason</th><th>Status</th></tr></thead>
+            <tbody id="hsrows">
+              <tr><td colspan="7"><div class="empty"><p>Press Search to load history.</p></div></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+
+        <section class="card hidden" id="detailCard">
+          <div class="card-head">
+            <div><h2 id="detailTitle">Event</h2>
+              <p class="hint" style="margin:0" id="detailNote"></p></div>
+            <button class="ghost small" id="detailClose">Close</button>
+          </div>
+          <div id="detailBody"></div>
+        </section>
+      </section>
+
+      <!-- ================================================== ANALYTICS -->
+      <section class="view" data-view="analytics" id="viewAnalytics" hidden>
+        <div class="grid split" style="align-items:start">
+          <div class="card">
+            <div class="card-head"><div><h2>Compliance</h2>
+              <p class="hint" style="margin:0" id="anote">Counted from recorded evaluations.</p></div>
+              <button class="ghost small" id="anrefresh">Refresh</button></div>
+            <div class="kv" id="analytics"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h2>System health</h2>
+              <p class="hint" style="margin:0" id="hnote">Camera, model, storage and queue.</p></div>
+              <button class="ghost small" id="hrefresh">Refresh</button></div>
+            <div class="kv" id="healthTiles"></div>
+          </div>
+        </div>
+
+        <div class="section-label">Record</div>
+
+        <section class="card">
+          <div class="card-head">
+            <div><h2>Violation log</h2>
+              <p class="hint" style="margin:0" id="vlnote">Kept on this machine — details only, never images.</p></div>
+            <button class="ghost small" id="vlrefresh">Refresh</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Time (UTC)</th><th>Source</th><th>Person</th><th>Status</th><th>Missing</th><th>Conf</th></tr></thead>
+            <tbody id="vlrows">
+              <tr><td colspan="6"><div class="empty"><p>Press Refresh to load the log.</p></div></td></tr>
+            </tbody>
+          </table></div>
+        </section>
+      </section>
+
+      <!-- ===================================================== ALERTS -->
+      <section class="view" data-view="alerts" id="viewAlerts" hidden>
+        <section class="card">
+          <div class="card-head">
+            <div><h2>Alerts</h2>
+              <p class="hint" style="margin:0" id="alnote">Raised from rule-engine decisions only.</p></div>
+            <button class="ghost small" id="alrefresh">Refresh</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Time (UTC)</th><th>Source</th><th>Worker</th><th>Problem</th>
+                       <th>Conf</th><th>State</th><th></th></tr></thead>
+            <tbody id="alrows">
+              <tr><td colspan="7"><div class="empty"><p>Press Refresh to load alerts.</p></div></td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <div class="section-label">Review and decide</div>
+
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2>Copilot review queue</h2>
+              <p class="hint" style="margin:0" id="cpnote">
+                The system proposes; a person decides. Nothing here is carried out until you approve it.
+              </p>
+            </div>
+            <button class="ghost small" id="cprefresh">Refresh</button>
+          </div>
+
+          <div id="signedInBox" class="field hidden" style="margin:0 0 14px">
+            Deciding as <span class="chip" id="cpactorName"></span>
+            <span class="status-text" id="roleNote"></span>
+          </div>
+          <div id="signInPrompt" class="banner" style="margin-bottom:14px">
+            <span>Sign in as a supervisor to approve or reject — a decision has to be attributable.</span>
+            <button class="ghost small spacer" id="goToSettings">Sign in</button>
+          </div>
+
+          <div class="table-wrap"><table>
+            <thead><tr><th>Priority</th><th>Worker</th><th>Proposed action</th><th>Why</th><th>Decision</th></tr></thead>
+            <tbody id="cprows">
+              <tr><td colspan="5"><div class="empty"><p>Press Refresh to load the queue.</p></div></td></tr>
+            </tbody>
+          </table></div>
+        </section>
+      </section>
+
+      <!-- =================================================== SETTINGS -->
+      <section class="view" data-view="settings" id="viewSettings" hidden>
+        <div class="grid split" style="align-items:start">
+          <div class="card">
+            <h2>Sign in</h2>
+            <p class="hint">Decisions are attributed to an account, never to a typed name (threat T1).</p>
+            <div id="signInBox" class="fields">
+              <label class="field">User <input id="cpuser" placeholder="username" autocomplete="username"></label>
+              <label class="field">Password
+                <input id="cppass" type="password" placeholder="password" autocomplete="current-password"></label>
+              <button class="small" id="signIn">Sign in</button>
+            </div>
+            <div id="signedInCard" class="field hidden">
+              Signed in as <span class="chip" id="signedInName"></span>
+              <span class="chip" id="signedInRole"></span>
+            </div>
+            <p class="status-text" id="signInMsg">Viewer, supervisor and admin are the three roles.</p>
+          </div>
+
+          <div class="card">
+            <h2>What the copilot may propose</h2>
+            <p class="hint">The complete list. Anything else is refused and logged.</p>
+            <div id="cpcatalog" class="hint" style="margin-top:10px">loading…</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Approved alerts (local outbox)</h2>
+          <p class="hint">Escalations a supervisor approved, collected for the site system.</p>
+          <div id="cpoutbox" class="hint" style="margin-top:10px">loading…</div>
+        </div>
+
+        <div class="card">
+          <h2>About this system</h2>
+          <div class="kv" style="margin-top:12px">
+            <div><div class="k">Model</div><div class="v">YOLO26n · 2.51 M params</div></div>
+            <div><div class="k">Test accuracy</div><div class="v">mAP50 0.804</div></div>
+            <div><div class="k">Threshold</div><div class="v">0.50 · review band 0.15</div></div>
+            <div><div class="k">Fail-safe</div><div class="v">REVIEW or STOP, never GO</div></div>
+            <div><div class="k">Processing</div><div class="v">Entirely on this machine</div></div>
+            <div><div class="k">Retention</div><div class="v">7 / 30 / 90 days</div></div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /content -->
+
+    <footer>
+      <div class="footer-grid">
+        <span><strong>Detection</strong> · 4 classes: person, helmet, vest, mask</span>
+        <span><strong>Accuracy</strong> · mAP50 0.804 on the held-out test set</span>
+        <span><strong>Processing</strong> · entirely on this machine</span>
+        <span><strong>Storage</strong> · no images kept</span>
+      </div>
+      <p style="margin:0">
+        Edge Vision Safety Copilot — assistive monitoring. Every judgement is a proposal for a
+        person to confirm, never an automatic decision about a worker.
+      </p>
+    </footer>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+/* ------------------------------------------------------------ navigation */
+/* One page, several views. The rail switches which one is shown; nothing is
+   fetched again on a switch, so moving around never disturbs a running camera. */
+const VIEW_TITLES = {
+  dashboard: ['Dashboard', 'Live PPE compliance monitoring for a safer site'],
+  analyse:   ['Analyse', 'Upload a site photo or a clip — nothing is uploaded off this machine'],
+  live:      ['Live Monitoring', 'Real-time detection and safety decisions'],
+  history:   ['History', 'View and manage all recorded safety events'],
+  analytics: ['Analytics', 'Compliance, system health and the violation log'],
+  alerts:    ['Alerts', 'What needs a supervisor now'],
+  settings:  ['Settings', 'Accounts, allowed actions and system facts'],
+};
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(section => {
+    section.hidden = section.dataset.view !== name;
+  });
+  document.querySelectorAll('.rail-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.view === name);
+  });
+  const [title, sub] = VIEW_TITLES[name] || VIEW_TITLES.dashboard;
+  $('pageTitle').textContent = title;
+  $('pageSub').textContent = sub;
+  window.scrollTo({ top: 0 });
+}
+
+document.querySelectorAll('.rail-link').forEach(link =>
+  link.addEventListener('click', () => {
+    /* Live monitoring is its own page: the camera has exactly one implementation
+       (D-013), so the rail navigates there rather than opening a second copy. */
+    if (link.dataset.view === 'live') { window.location = '/live'; return; }
+    showView(link.dataset.view);
+    history.replaceState(null, '', '#' + link.dataset.view);
+  }));
+
+$('dashOpenLive').addEventListener('click', () => { window.location = '/live'; });
+$('dashAllAlerts').addEventListener('click', () => showView('alerts'));
+$('goToSettings').addEventListener('click', () => showView('settings'));
+
+/* /dashboard#history opens straight on that view, so the live page can link back into it */
+const wanted = (location.hash || '').replace('#', '');
+if (wanted && VIEW_TITLES[wanted]) showView(wanted);
+
+$('stamp').textContent = new Date().toLocaleString(undefined,
+  { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+/* --------------------------------------------------------------- health */
+(async function health() {
+  try {
+    const r = await (await fetch('/health')).json();
+    $('healthDot').className = 'dot ' + (r.status === 'ok' ? 'live' : 'down');
+    $('healthText').textContent = r.status === 'ok' ? 'System online' : 'Degraded';
+  } catch (e) {
+    $('healthDot').className = 'dot down';
+    $('healthText').textContent = 'System offline';
+  }
+})();
+
+/* ----------------------------------------------------------------- tabs */
+function showTab(which) {
+  const image = which === 'image';
+  $('tabImage').setAttribute('aria-selected', image);
+  $('tabVideo').setAttribute('aria-selected', !image);
+  $('paneImage').classList.toggle('hidden', !image);
+  $('paneVideo').classList.toggle('hidden', image);
+}
+$('tabImage').addEventListener('click', () => showTab('image'));
+$('tabVideo').addEventListener('click', () => showTab('video'));
+
+/* ------------------------------------------------------------ shared UI */
+function requiredList() {
+  return [...document.querySelectorAll('#requiredPpe input[type=checkbox]')]
+    .filter(c => c.checked).map(c => c.value).join(',') || 'helmet,vest';
+}
+/* The API speaks in codes (MISSING_HELMET); the screen speaks English. The code is what
+   is logged and audited - this is presentation only, so the record stays machine-readable. */
+const STATUS_WORDS = {
+  PPE_VIOLATION: 'PPE violation', PPE_REVIEW: 'PPE review', PPE_COMPLIANT: 'PPE compliant',
+  COMPLIANT: 'Compliant',
+  MISSING_HELMET: 'No helmet',
+  MISSING_VEST: 'No vest',
+  MISSING_MASK: 'No mask',
+  MISSING_HELMET_AND_VEST: 'No helmet or vest',
+  POTENTIAL_VIOLATION: 'Possible violation',
+  UNCERTAIN: 'Unclear - needs a look',
+};
+function decisionBadge(decision) {
+  const kind = decision === 'GO' ? 'ok' : (decision === 'REVIEW' ? 'warn' : 'bad');
+  return `<span class="badge ${kind}">${decision || '—'}</span>`;
+}
+function humanStatus(status) {
+  return STATUS_WORDS[status] || (status || '').replace(/_/g, ' ').toLowerCase()
+    .replace(/^./, c => c.toUpperCase());
+}
+function badge(status) {
+  const kind = status === 'COMPLIANT' ? 'ok' : (status === 'UNCERTAIN' ? 'warn' : 'bad');
+  return `<span class="badge ${kind}">${humanStatus(status)}</span>`;
+}
+/* "image:site_east.jpg" is how the record identifies a source; a supervisor just needs
+   to know it was a photo called site_east.jpg. */
+function sourceLabel(source) {
+  const text = source || '';
+  if (text.startsWith('camera:')) return 'Camera ' + text.slice(7);
+  if (text.startsWith('video:')) return text.slice(6);
+  if (text.startsWith('image:')) return text.slice(6);
+  return text;
+}
+function dropZone(dropId, inputId, onPick, label) {
+  const drop = $(dropId), input = $(inputId);
+  drop.addEventListener('click', () => input.click());
+  drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+  drop.addEventListener('drop', (e) => {
+    e.preventDefault(); drop.classList.remove('over');
+    if (e.dataTransfer.files.length) onPick(e.dataTransfer.files[0]);
+  });
+  input.addEventListener('change', (e) => { if (e.target.files.length) onPick(e.target.files[0]); });
+}
+function showChosen(dropId, file, unit) {
+  const size = unit === 'MB' ? (file.size / (1024 * 1024)).toFixed(1) : Math.round(file.size / 1024);
+  $(dropId).innerHTML = `<strong>${file.name}</strong><span class="small">${size} ${unit} — ready to analyse</span>`;
+}
+
+/* ---------------------------------------------------------------- image */
+let chosen = null;
+$('conf').addEventListener('input', () => $('confVal').textContent = $('conf').value);
+dropZone('drop', 'file', (f) => { chosen = f; showChosen('drop', f, 'KB'); $('run').disabled = false; }, 'image');
+
+$('run').addEventListener('click', async () => {
+  if (!chosen) return;
+  $('run').disabled = true;
+  $('status').textContent = 'analysing…';
+
+  const form = new FormData();
+  form.append('image', chosen);
+  form.append('required', requiredList());
+  form.append('conf', $('conf').value);
+  form.append('annotate', 'true');
+
+  try {
+    const res = await fetch('/api/v1/predict', { method: 'POST', body: form });
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.detail || ('HTTP ' + res.status));
+    render(body);
+    $('status').textContent = '';
+    loadViolations();
+  } catch (err) {
+    $('status').textContent = 'Error: ' + err.message;
+  } finally {
+    $('run').disabled = false;
+  }
+});
+
+function render(r) {
+  $('resultsEmpty').classList.add('hidden');
+  $('results').classList.remove('hidden');
+  showVerdict(r);
+  const detections = Object.values(r.counts_by_class).reduce((a, b) => a + b, 0);
+  $('stats').innerHTML = [
+    ['People', r.people_count, ''], ['Compliant', r.compliant, 'good'],
+    ['Violations', r.violations, r.violations ? 'bad' : ''], ['Detections', detections, ''],
+  ].map(([k, v, cls]) => `<div class="stat ${cls}"><div class="n">${v}</div><div class="k">${k}</div></div>`).join('');
+
+  $('shot').src = r.annotated_image || '';
+  $('rows').innerHTML = r.people.length ? r.people.map(p => `
+      <tr>
+        <td><strong>${p.id}</strong></td>
+        <td class="num">${p.conf.toFixed(2)}</td>
+        <td>${Object.entries(p.wearing).map(([k, v]) => `<span class="chip">${k} ${v.toFixed(2)}</span>`).join('') || '—'}</td>
+        <td>${p.missing.map(m => `<span class="chip">${m}</span>`).join('') || '—'}</td>
+        <td>${decisionBadge(p.decision)}<br><span class="hint">${p.reason || ''}</span></td>
+      </tr>`).join('')
+    : '<tr><td colspan="5"><div class="empty"><p>No person detected in this image.</p></div></td></tr>';
+
+  $('timing').textContent = `${r.width}×${r.height} px · ${r.inference_ms} ms · upload stored: ${r.image_stored}${r.event_snapshot_stored ? ' · masked snapshot kept' : ''}`;
+  loadAnalytics();            // this upload just became an evaluation
+  loadAlerts();
+}
+
+/* ---------------------------------------------------------------- video */
+let vchosen = null;
+dropZone('vdrop', 'vfile', (f) => { vchosen = f; showChosen('vdrop', f, 'MB'); $('vrun').disabled = false; }, 'video');
+
+$('vrun').addEventListener('click', async () => {
+  if (!vchosen) return;
+  $('vrun').disabled = true;
+  $('vstatus').textContent = 'analysing… a few seconds per 10 frames';
+
+  const form = new FormData();
+  form.append('video', vchosen);
+  form.append('required', requiredList());
+  form.append('conf', $('conf').value);
+  form.append('every_nth', $('vevery').value);
+  form.append('max_frames', $('vmax').value);
+  form.append('annotate', 'true');
+
+  try {
+    const res = await fetch('/detect/video', { method: 'POST', body: form });
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.detail || ('HTTP ' + res.status));
+    renderVideo(body);
+    $('vstatus').textContent = '';
+    loadViolations();
+  } catch (err) {
+    $('vstatus').textContent = 'Error: ' + err.message;
+  } finally {
+    $('vrun').disabled = false;
+  }
+});
+
+function renderVideo(r) {
+  $('vresultsEmpty').classList.add('hidden');
+  $('vresults').classList.remove('hidden');
+  $('vstats').innerHTML = [
+    ['Frames', r.frames_analysed, ''], ['Max people', r.people_max, ''],
+    ['Bad frames', r.frames_with_violation, r.frames_with_violation ? 'bad' : ''],
+    ['Violation rate', Math.round(r.violation_rate * 100) + '%', r.violation_rate ? 'bad' : 'good'],
+  ].map(([k, v, cls]) => `<div class="stat ${cls}"><div class="n">${v}</div><div class="k">${k}</div></div>`).join('');
+
+  $('vshot').src = r.worst_frame_image || '';
+  $('vrows').innerHTML = r.timeline.map(f => `
+      <tr>
+        <td class="num">${f.frame}</td>
+        <td class="num">${f.time_s.toFixed(2)}s</td>
+        <td class="num">${f.people}</td>
+        <td class="num">${f.violations}</td>
+        <td>${f.statuses.map(badge).join(' ') || '—'}</td>
+      </tr>`).join('');
+
+  $('vtiming').textContent =
+    `${r.width}×${r.height} · ${r.source_frames} frames @ ${r.source_fps} fps · every ${r.every_nth}th analysed in ${r.processing_s}s · video stored: ${r.video_stored}`;
+}
+
+/* ------------------------------------------------------------- decisions */
+/* The banner shows what the rule engine decided, why, and against which threshold.
+   The colour is a shortcut; the sentence is the answer. */
+function showVerdict(result) {
+  const decision = (result.decision || 'GO').toUpperCase();
+  const box = $('verdict');
+  box.className = 'verdict ' + decision.toLowerCase();
+  $('verdictMark').textContent = decision;
+  $('verdictTitle').textContent = {
+    GO: 'Safe to proceed', REVIEW: 'Needs a human look', STOP: 'Stop - intervene'
+  }[decision] || decision;
+  $('verdictReason').textContent = result.reason || '';
+  const evidence = (result.people || []).flatMap(p => p.evidence || []);
+  $('verdictMeta').innerHTML =
+    `<span class="chip">rule ${result.rule || '-'}</span>` +
+    `<span class="chip">threshold ${(result.threshold ?? 0).toFixed(2)}</span>` +
+    evidence.map(e => `<span class="chip">${e.item} ${e.confidence.toFixed(2)} · ${e.state}</span>`)
+            .join('');
+}
+
+/* --------------------------------------------------------------- alerts */
+$('alrefresh').addEventListener('click', loadAlerts);
+
+const ALERT_ICON = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path>
+  <path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>`;
+
+async function loadAlerts() {
+  try {
+    const r = await (await fetch('/api/v1/alerts?limit=50')).json();
+    $('alnote').textContent = r.count
+      ? `${r.count} alert(s), ${r.unacknowledged} not yet acknowledged.`
+      : 'No alerts yet. They are raised from rule-engine decisions, never invented.';
+    $('alrows').innerHTML = r.alerts.length ? r.alerts.map(a => `
+      <tr>
+        <td class="num">${(a.at || '').replace('T', ' ').replace('+00:00', '')}</td>
+        <td><span class="chip">${sourceLabel(a.source)}</span></td>
+        <td>${a.person || '—'}</td>
+        <td>${badge(a.status || '')}</td>
+        <td class="num">${a.confidence !== undefined && a.confidence !== null ? a.confidence.toFixed(2) : '—'}</td>
+        <td>${a.state === 'NEW'
+              ? '<span class="badge warn">New</span>'
+              : `<span class="badge ok">Acknowledged</span><br><span class="hint">${a.acknowledged_by || ''}</span>`}</td>
+        <td>${a.state === 'NEW'
+              ? `<button class="small" data-ack="${a.alert_id}">Acknowledge</button>` : ''}</td>
+      </tr>`).join('')
+      : '<tr><td colspan="7"><div class="empty"><p>No alerts.</p></div></td></tr>';
+    $('alrows').querySelectorAll('button[data-ack]').forEach(b =>
+      b.addEventListener('click', () => acknowledge(b.dataset.ack)));
+
+    /* the same alerts, shown compactly on the dashboard */
+    const open = r.unacknowledged || 0;
+    $('navAlertCount').textContent = open;
+    $('navAlertCount').classList.toggle('hidden', !open);
+    $('kpiAlerts').textContent = open;
+    $('kpiAlertsFoot').textContent = r.count
+      ? `${r.count} recorded in total` : 'nothing raised yet';
+    $('dashAlertNote').textContent = open
+      ? `${open} waiting for a supervisor.` : 'Nothing waiting for a supervisor.';
+    $('dashAlerts').innerHTML = r.alerts.length ? r.alerts.slice(0, 5).map(a => `
+      <div class="feed-item">
+        <span class="feed-icon ${a.state === 'NEW' ? 'bad' : 'ok'}">${ALERT_ICON}</span>
+        <span>
+          <span class="feed-title">${humanStatus(a.status || '')}</span><br>
+          <span class="feed-sub">${sourceLabel(a.source)} · ${(a.at || '').replace('T', ' ').slice(11, 19)}</span>
+        </span>
+        ${a.state === 'NEW' ? '<span class="badge bad">Stop</span>' : '<span class="badge ok">Done</span>'}
+      </div>`).join('')
+      : '<div class="empty"><p>No alerts yet.</p></div>';
+  } catch (err) { $('alnote').textContent = 'Could not load alerts: ' + err.message; }
+}
+
+async function acknowledge(id) {
+  const r = await fetch(`/api/v1/alerts/${id}/ack`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+  const body = await r.json();
+  $('alnote').textContent = r.ok
+    ? `Acknowledged by ${body.acknowledged_by}.`
+    : (body.detail || 'Could not acknowledge that alert.');
+  if (r.ok) loadAlerts();
+}
+
+/* ------------------------------------------------- analytics and health */
+$('anrefresh').addEventListener('click', loadAnalytics);
+$('hrefresh').addEventListener('click', loadHealth);
+
+function tiles(target, pairs) {
+  $(target).innerHTML = pairs.map(([k, v]) =>
+    `<div><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+}
+
+async function loadAnalytics() {
+  try {
+    const a = await (await fetch('/api/v1/analytics/compliance')).json();
+    $('anote').textContent = a.total_evaluations
+      ? `From ${a.total_evaluations} recorded evaluation(s).`
+      : 'Nothing evaluated yet — the rate is unknown, which is not the same as 0 %.';
+    tiles('analytics', [
+      ['Evaluations', a.total_evaluations],
+      ['Compliant', a.compliant],
+      ['Violations', a.violations],
+      ['Review', a.review],
+      ['Compliance', a.compliance_pct === null ? '—' : a.compliance_pct + ' %'],
+      ['People seen', a.people_seen],
+      ['No helmet', a.by_item.helmet],
+      ['No vest', a.by_item.vest],
+      ['No mask', a.by_item.mask],
+    ]);
+
+    /* the headline tiles on the dashboard come from the same numbers */
+    $('kpiPeople').textContent = a.people_seen ?? 0;
+    $('kpiPeopleFoot').textContent = `${a.total_evaluations || 0} evaluation(s) recorded`;
+    $('kpiCompliant').textContent = a.compliant ?? 0;
+    $('kpiCompliantFoot').textContent = a.compliance_pct === null
+      ? 'rate unknown — not the same as 0 %'
+      : `${a.compliance_pct} % of evaluations`;
+    $('kpiAttention').textContent = (a.violations || 0) + (a.review || 0);
+    $('kpiAttentionFoot').textContent = `${a.violations || 0} violation(s) · ${a.review || 0} unclear`;
+  } catch (err) { $('anote').textContent = 'Could not load analytics: ' + err.message; }
+}
+
+async function loadHealth() {
+  try {
+    const h = await (await fetch('/api/v1/health/system')).json();
+    $('hnote').textContent = `Queue is ${h.queue.mode}; ${h.queue.pending_events} event(s) waiting.`;
+    tiles('healthTiles', [
+      ['Camera', h.camera.running ? 'Running' : 'Idle'],
+      ['Frame rate', (h.camera.fps || 0) + ' fps'],
+      ['Latency', (h.camera.latency_ms || 0) + ' ms'],
+      ['Frames', h.camera.frames || 0],
+      ['Dropped', h.camera.dropped || 0],
+      ['Memory', (h.process.memory_mb ?? '—') + ' MB'],
+      ['CPU', (h.process.cpu_pct ?? '—') + ' %'],
+      ['Free disk', (h.storage.free_gb ?? '—') + ' GB'],
+      ['Recordings', (h.storage.recordings_mb ?? 0) + ' MB'],
+      ['Snapshots', (h.storage.snapshots_mb ?? 0) + ' MB'],
+      ['Queue', h.queue.mode],
+      ['Evidence', h.evidence.snapshots_enabled ? 'Snapshots on' : 'Metadata only'],
+    ]);
+  } catch (err) { $('hnote').textContent = 'Could not load system health: ' + err.message; }
+}
+
+/* Reading the camera state does not open the camera - only /live/stream does that. */
+async function loadCameraStrip() {
+  try {
+    const s = await (await fetch('/live/status')).json();
+    $('dashPeople').textContent = s.people ?? '—';
+    $('dashViolations').textContent = s.violations ?? '—';
+    $('dashCompliant').textContent = s.compliant ?? (s.people != null && s.violations != null
+      ? Math.max(s.people - s.violations, 0) : '—');
+    $('dashFrameNote').textContent = s.running
+      ? `camera running · ${s.fps ?? 0} fps` : 'camera idle';
+    $('dashPlaceholder').innerHTML = s.running
+      ? 'The camera is running.<br>Open the live view to watch the feed.'
+      : 'The camera is not running.<br>Open the live view to start it.';
+  } catch (err) {
+    $('dashFrameNote').textContent = 'camera state unavailable';
+    $('dashPlaceholder').innerHTML = 'The camera state could not be read.';
+  }
+}
+
+loadAnalytics();
+loadHealth();
+loadAlerts();
+loadCameraStrip();
+
+/* -------------------------------------------------------------- history */
+$('hsrefresh').addEventListener('click', loadHistory);
+$('hsexport').addEventListener('click', () => { window.location = '/api/v1/history/export?fmt=csv' + filterQuery(); });
+['fdecision','ftype','fseverity','fstatus','fhours','fcamera'].forEach(id =>
+  $(id).addEventListener('change', loadHistory));
+$('funack').addEventListener('change', loadHistory);
+$('detailClose').addEventListener('click', () => $('detailCard').classList.add('hidden'));
+
+const EVENT_WORDS = {
+  PPE_VIOLATION: 'PPE violation', PPE_REVIEW: 'PPE review', PPE_COMPLIANT: 'PPE compliant',
+  CAMERA_FAILURE: 'Camera failure', MODEL_FAILURE: 'Model failure',
+  STORAGE_FAILURE: 'Storage failure', SYSTEM_WARNING: 'System warning',
+};
+const SEVERITY_KIND = { CRITICAL: 'bad', HIGH: 'bad', MEDIUM: 'warn', LOW: 'ok' };
+
+function filterQuery() {
+  const parts = [];
+  const add = (key, value) => { if (value) parts.push(`${key}=${encodeURIComponent(value)}`); };
+  add('decision', $('fdecision').value);
+  add('event_type', $('ftype').value);
+  add('severity', $('fseverity').value);
+  add('status', $('fstatus').value);
+  add('hours', $('fhours').value);
+  add('camera_id', $('fcamera').value.trim());
+  if ($('funack').checked) parts.push('unacknowledged_only=true');
+  return parts.length ? '&' + parts.join('&') : '';
+}
+
+function when(value) {
+  return (value || '').replace('T', ' ').replace('+00:00', '').slice(0, 19);
+}
+
+async function loadHistory() {
+  try {
+    const r = await (await fetch('/api/v1/history?limit=100' + filterQuery())).json();
+    $('hsnote').textContent = r.count
+      ? `${r.count} event(s) matching the filters.`
+      : 'No events match these filters.';
+    $('hsrows').innerHTML = r.events.length ? r.events.map(e => `
+      <tr data-event="${e.event_id}" style="cursor:pointer">
+        <td class="num">${when(e.occurred_at)}</td>
+        <td>${EVENT_WORDS[e.event_type] || e.event_type}<br>
+            <span class="hint">${e.event_id}${e.occurrences > 1 ? ' · ×' + e.occurrences : ''}</span></td>
+        <td><span class="chip">${sourceLabel(e.camera_id)}</span></td>
+        <td>${e.person_id}</td>
+        <td>${decisionBadge(e.decision)}
+            <span class="badge ${SEVERITY_KIND[e.severity] || 'warn'}">${e.severity}</span></td>
+        <td>${e.reason}</td>
+        <td>${e.status === 'NEW' ? '<span class="badge warn">New</span>'
+             : e.status === 'ACKNOWLEDGED' ? '<span class="badge ok">Acknowledged</span>'
+             : '<span class="badge ok">Closed</span>'}</td>
+      </tr>`).join('')
+      : '<tr><td colspan="7"><div class="empty"><p>Nothing recorded yet.</p></div></td></tr>';
+    $('hsrows').querySelectorAll('tr[data-event]').forEach(row =>
+      row.addEventListener('click', () => showEvent(row.dataset.event)));
+  } catch (err) { $('hsnote').textContent = 'Could not load history: ' + err.message; }
+}
+
+async function showEvent(eventId) {
+  const r = await fetch(`/api/v1/history/${eventId}`);
+  if (!r.ok) { $('hsnote').textContent = 'That event is no longer available.'; return; }
+  const e = await r.json();
+  $('detailCard').classList.remove('hidden');
+  $('detailTitle').textContent = `${e.event_id} — ${EVENT_WORDS[e.event_type] || e.event_type}`;
+  $('detailNote').textContent = e.reason;
+
+  const detected = (e.detected_ppe || [])
+    .map(d => `<span class="chip">${d.type} ${d.confidence.toFixed(2)}</span>`).join('') || '—';
+  const list = items => (items || []).map(i => `<span class="chip">${i}</span>`).join('') || '—';
+
+  $('detailBody').innerHTML = `
+    <div class="kv">
+      <div><div class="k">Decision</div><div class="v">${e.decision}</div></div>
+      <div><div class="k">Severity</div><div class="v">${e.severity}</div></div>
+      <div><div class="k">Status</div><div class="v">${e.status}</div></div>
+      <div><div class="k">Person</div><div class="v">${e.person_id}</div></div>
+      <div><div class="k">Camera</div><div class="v">${sourceLabel(e.camera_id)}</div></div>
+      <div><div class="k">Occurrences</div><div class="v">${e.occurrences}</div></div>
+      <div><div class="k">Duration</div><div class="v">${e.duration_s}s</div></div>
+      <div><div class="k">Threshold</div><div class="v">${(e.threshold ?? 0).toFixed(2)}</div></div>
+      <div><div class="k">Sync</div><div class="v">${e.sync_status}</div></div>
+    </div>
+    <div class="table-wrap" style="margin-top:16px"><table>
+      <tbody>
+        <tr><th>Occurred</th><td>${when(e.occurred_at)} UTC</td></tr>
+        <tr><th>Required PPE</th><td>${list(e.required_ppe)}</td></tr>
+        <tr><th>Detected</th><td>${detected}</td></tr>
+        <tr><th>Missing</th><td>${list(e.missing_ppe)}</td></tr>
+        <tr><th>Uncertain</th><td>${list(e.uncertain_ppe)}</td></tr>
+        <tr><th>Rule</th><td><span class="chip">${e.rule_id}</span></td></tr>
+        <tr><th>Reason</th><td>${e.reason}</td></tr>
+        <tr><th>Evidence</th><td>${e.snapshot ? `<span class="chip">masked snapshot: ${e.snapshot.name}</span>` : 'no snapshot'}
+            ${e.recording ? `<span class="chip">clip: ${e.recording.name}</span>` : ''}</td></tr>
+        <tr><th>Acknowledged</th><td>${e.acknowledged
+              ? `${e.acknowledged_by} · ${when(e.acknowledged_at)}` : 'not yet'}</td></tr>
+      </tbody>
+    </table></div>
+    <div class="btn-row">
+      ${e.status === 'NEW' ? `<button class="small" data-act="acknowledge">Acknowledge</button>` : ''}
+      ${e.status !== 'CLOSED' ? `<button class="ghost small" data-act="close">Close event</button>` : ''}
+      <button class="ghost small" data-act="delete">Delete from history</button>
+      <span class="status-text" id="detailMsg"></span>
+    </div>`;
+
+  $('detailBody').querySelectorAll('button[data-act]').forEach(button =>
+    button.addEventListener('click', () => act(e.event_id, button.dataset.act)));
+  $('detailCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+async function act(eventId, action) {
+  if (action === 'delete' && !window.confirm(
+      `Delete event ${eventId} from history?\n\nThe record is hidden from the history view. ` +
+      `Its evidence files are kept, and an administrator can remove them permanently.`)) return;
+
+  const url = action === 'delete'
+    ? `/api/v1/history/${eventId}` : `/api/v1/history/${eventId}/${action}`;
+  const r = await fetch(url, {
+    method: action === 'delete' ? 'DELETE' : 'POST',
+    headers: { 'Content-Type': 'application/json' }, body: action === 'delete' ? null : '{}' });
+  const body = await r.json();
+  if (!r.ok) { $('detailMsg').textContent = body.detail || 'That action was refused.'; return; }
+
+  if (action === 'delete') $('detailCard').classList.add('hidden');
+  else showEvent(eventId);
+  loadHistory(); loadAlerts(); loadAnalytics();
+}
+
+loadHistory();
+
+/* -------------------------------------------------------------- session */
+/* Who is signed in decides what the page OFFERS. The server decides what it ALLOWS -
+   the buttons below are a courtesy, not the control. */
+let session = { signed_in: false, role: null, can_decide: false };
+
+async function loadSession() {
+  try {
+    session = await (await fetch('/api/v1/auth/me')).json();
+  } catch (e) {
+    session = { signed_in: false, role: null, can_decide: false };
+  }
+  const inBox = $('signInBox'), outBox = $('signedInBox');
+  $('whoText').textContent = session.signed_in ? session.display_name : 'not signed in';
+  $('whoRole').textContent = session.signed_in ? session.role : 'sign in to decide';
+  $('signOut').classList.toggle('hidden', !session.signed_in);
+  $('signInPrompt').classList.toggle('hidden', !!session.signed_in);
+  if (inBox) inBox.classList.toggle('hidden', session.signed_in);
+  $('signedInCard').classList.toggle('hidden', !session.signed_in);
+  if (session.signed_in) {
+    $('signedInName').textContent = session.display_name;
+    $('signedInRole').textContent = session.role;
+  }
+  if (outBox) outBox.classList.toggle('hidden', !session.signed_in);
+  if (session.signed_in && outBox) {
+    $('cpactorName').textContent = session.display_name;
+    $('roleNote').textContent = session.can_decide
+      ? 'Your decisions are recorded against your account.'
+      : 'Viewers can see the queue but cannot decide.';
+  }
+}
+
+$('signIn').addEventListener('click', async () => {
+  const username = $('cpuser').value.trim(), password = $('cppass').value;
+  if (!username || !password) { $('signInMsg').textContent = 'Enter a username and password.'; return; }
+  try {
+    const r = await fetch('/api/v1/auth/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const body = await r.json();
+    if (!r.ok) { $('signInMsg').textContent = body.detail || 'Sign-in failed.'; return; }
+    $('cppass').value = '';
+    $('signInMsg').textContent = 'Signed in.';
+    await loadSession();
+    await loadCopilot();
+  } catch (err) {
+    $('signInMsg').textContent = 'Could not reach the server.';
+  }
+});
+
+$('cppass').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('signIn').click(); });
+
+$('signOut').addEventListener('click', async () => {
+  await fetch('/api/v1/auth/logout', { method: 'POST' });
+  await loadSession();
+  await loadCopilot();
+});
+
+loadSession();
+
+/* -------------------------------------------------------------- copilot */
+$('cprefresh').addEventListener('click', loadCopilot);
+
+const SEVERITY = { 3: ['bad', 'urgent'], 2: ['warn', 'raise'], 1: ['ok', 'routine'] };
+
+async function loadCopilot() {
+  try {
+    const q = await (await fetch('/api/v1/copilot/suggestions?status=PENDING&limit=50')).json();
+    $('cpnote').textContent = q.count
+      ? `${q.count} waiting for a decision — nothing is carried out until a supervisor approves it.`
+      : 'Nothing waiting. The copilot proposes only when a worker is non-compliant or unclear.';
+    const allowed = !!session.can_decide;
+    $('cprows').innerHTML = q.suggestions.length ? q.suggestions.map(s => {
+      const [kind, word] = SEVERITY[s.severity] || SEVERITY[1];
+      return `<tr>
+        <td><span class="badge ${kind}">${word}</span></td>
+        <td>${s.subject}<br><span class="chip">${sourceLabel(s.source)}</span></td>
+        <td><strong>${s.action_title}</strong><br><span class="hint">${s.action_effect}</span></td>
+        <td>${s.reason}<br><span class="hint">Rule ${s.rule}</span></td>
+        <td style="white-space:nowrap">
+          <button class="small" data-id="${s.suggestion_id}" data-decision="approve" ${allowed ? '' : 'disabled'}
+                  title="${allowed ? '' : 'Sign in as a supervisor to decide'}">Approve</button>
+          <button class="ghost small" data-id="${s.suggestion_id}" data-decision="reject" ${allowed ? '' : 'disabled'}
+                  title="${allowed ? '' : 'Sign in as a supervisor to decide'}">Reject</button>
+        </td></tr>`;
+    }).join('') : '<tr><td colspan="5"><div class="empty"><p>Queue is empty.</p></div></td></tr>';
+
+    $('cprows').querySelectorAll('button[data-id]').forEach(b =>
+      b.addEventListener('click', () => decide(b.dataset.id, b.dataset.decision)));
+
+    const c = await (await fetch('/api/v1/copilot/catalog')).json();
+    $('cpcatalog').innerHTML = c.actions.map(a =>
+      `<div style="margin-bottom:8px"><strong>${a.title}</strong> — ${a.description}
+       <br><span class="chip">${a.effect}</span>
+       <span class="chip">${a.reversible ? 'reversible' : 'not reversible'}</span></div>`).join('')
+      + `<p style="margin-top:10px">${c.note}</p>`;
+    await loadOutbox();
+  } catch (err) {
+    $('cpnote').textContent = 'Could not load the queue: ' + err.message;
+  }
+}
+
+async function decide(id, decision) {
+  if (!session.can_decide) {
+    $('cpnote').textContent = 'Sign in as a supervisor first — a decision has to be attributable.';
+    return;
+  }
+  try {
+    const r = await fetch(`/api/v1/copilot/suggestions/${id}/decide`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ decision })
+    });
+    const body = await r.json();
+    if (!r.ok) {
+      $('cpnote').textContent = body.detail || 'That decision was refused.';
+      if (r.status === 401) await loadSession();       // the session may have expired
+      return;
+    }
+    $('cpnote').textContent = decision === 'approve'
+      ? `Approved by ${body.decided_by} — ${body.outcome}.`
+      : `Rejected by ${body.decided_by}. Nothing was carried out.`;
+    await loadCopilot();
+  } catch (err) {
+    $('cpnote').textContent = 'Could not record the decision: ' + err.message;
+  }
+}
+
+async function loadOutbox() {
+  const o = await (await fetch('/api/v1/copilot/outbox?limit=20')).json();
+  $('cpoutbox').innerHTML = o.messages.length
+    ? o.messages.map(m => `<div style="margin-bottom:6px">
+        <span class="badge ${m.priority === 'HIGH' ? 'bad' : 'warn'}">${m.priority}</span>
+        ${m.reason} <span class="chip">approved by ${m.approved_by}</span>
+        <span class="chip">${(m.time || '').replace('T', ' ').replace('+00:00', '')}</span></div>`).join('')
+      + `<p class="hint" style="margin-top:8px">Held on this machine. Nothing is sent anywhere.</p>`
+    : '<p>No approved alerts yet. Approved escalations are collected here for the site system.</p>';
+}
+
+loadCopilot();
+
+/* ----------------------------------------------------------- violations */
+$('vlrefresh').addEventListener('click', loadViolations);
+
+async function loadViolations() {
+  try {
+    const r = await (await fetch('/api/v1/violations?limit=50')).json();
+    $('vlnote').textContent = r.count
+      ? `${r.count} ${r.count === 1 ? 'entry' : 'entries'} · stored on this machine · details only, no images`
+      : 'Nothing recorded yet · stored on this machine · details only, no images';
+    $('vlrows').innerHTML = r.violations.length ? r.violations.map(v => `
+        <tr>
+          <td class="num">${(v.time || '').replace('T', ' ').replace('+00:00', '')}</td>
+          <td><span class="chip">${sourceLabel(v.source)}</span></td>
+          <td>${v.kind === 'video' ? '—' : (v.person_id || '')}</td>
+          <td>${v.kind === 'video'
+                ? `<span class="badge warn">${v.frames_with_violation}/${v.frames_analysed} frames</span>`
+                : badge(v.status || '')}</td>
+          <td>${(v.missing || []).map(m => `<span class="chip">${m}</span>`).join('') || '—'}</td>
+          <td class="num">${v.confidence !== undefined ? v.confidence.toFixed(2) : '—'}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="6"><div class="empty"><p>No violations logged yet.</p></div></td></tr>';
+  } catch (err) {
+    $('vlnote').textContent = 'Could not read the log: ' + err.message;
+  }
+}
+
+loadViolations();
+</script>
+</body>
+</html>

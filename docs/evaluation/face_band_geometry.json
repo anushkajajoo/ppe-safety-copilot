@@ -1,0 +1,34 @@
+{
+  "label_files": 84,
+  "ppe_boxes_matched_to_a_person": 166,
+  "classes": {
+    "helmet": {
+      "n": 86,
+      "top_p10": -0.003,
+      "top_median": 0.006,
+      "bottom_median": 0.155,
+      "bottom_p90": 0.776,
+      "bottom_p99": 1.244,
+      "centre_median": 0.089
+    },
+    "vest": {
+      "n": 55,
+      "top_p10": 0.014,
+      "top_median": 0.2,
+      "bottom_median": 0.579,
+      "bottom_p90": 0.992,
+      "bottom_p99": 1.0,
+      "centre_median": 0.377
+    },
+    "mask": {
+      "n": 25,
+      "top_p10": 0.12,
+      "top_median": 0.301,
+      "bottom_median": 0.579,
+      "bottom_p90": 1.0,
+      "bottom_p99": 1.0,
+      "centre_median": 0.432
+    }
+  },
+  "split": "val"
+}

@@ -19,7 +19,7 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-CONTRACT_VERSION = "1.0.0"
+CONTRACT_VERSION = "1.1.0"  # 1.1.0: + INSUFFICIENT_EVIDENCE, ZoneIn, list/ack models
 
 
 # --------------------------------------------------------------------------- #
@@ -55,6 +55,7 @@ class ReasonCode(str, Enum):
     OUT_OF_CONFIGURED_ZONE = "OUT_OF_CONFIGURED_ZONE"
     LOW_CONFIDENCE = "LOW_CONFIDENCE"
     CAMERA_OBSTRUCTED = "CAMERA_OBSTRUCTED"
+    INSUFFICIENT_EVIDENCE = "INSUFFICIENT_EVIDENCE"  # not enough frames observed yet
 
 
 class ReviewStatus(str, Enum):
@@ -171,3 +172,55 @@ class HealthResponse(BaseModel):
     api_version: str
     contract_version: str = CONTRACT_VERSION
     server_time: datetime
+
+
+class EventAck(BaseModel):
+    """Server reply to POST /events. duplicate=True means we already had it (safe to mark SYNCED)."""
+    event_id: str
+    duplicate: bool
+    review_status: ReviewStatus
+
+
+class EventList(BaseModel):
+    total: int
+    limit: int
+    offset: int
+    items: List[EventRead]
+
+
+# --------------------------------------------------------------------------- #
+# Zones: configured polygons in the camera image (NOT GPS).
+# --------------------------------------------------------------------------- #
+class ZoneIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    zone_id: str = Field(pattern=r"^[a-z0-9][a-z0-9_-]{0,63}$", examples=["welding-a"])
+    zone_name: str = Field(min_length=1, max_length=128)
+    zone_type: ZoneType
+    camera_id: str = Field(min_length=1, max_length=64)
+    polygon: List[List[float]] = Field(min_length=3, max_length=64, description="[[x, y], ...] pixels")
+    required_ppe: List[PPEClass] = Field(default_factory=list)
+    authorization_required: bool = False
+    priority: int = Field(default=0, ge=0, le=100)
+    active: bool = True
+
+    @field_validator("polygon")
+    @classmethod
+    def _points_are_pairs(cls, v: List[List[float]]):
+        for pt in v:
+            if len(pt) != 2 or pt[0] < 0 or pt[1] < 0:
+                raise ValueError("each polygon point must be [x, y] with x, y >= 0")
+        return v
+
+    @field_validator("required_ppe")
+    @classmethod
+    def _no_person_requirement(cls, v: List[PPEClass]):
+        if PPEClass.PERSON in v:
+            raise ValueError("'person' is not a PPE item")
+        return list(dict.fromkeys(v))
+
+
+class ZoneRead(ZoneIn):
+    model_config = ConfigDict(from_attributes=True, extra="ignore")
+    config_version: int
+    updated_at: datetime
